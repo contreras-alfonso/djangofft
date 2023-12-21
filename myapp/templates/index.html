@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body class="bg-white">
+<div id="content" class="p-10">
+    <h1 class="font-black text-xl mb-5 uppercase">Redes Neuronales</h1>
+
+    <!-- Formulario para cargar la imagen -->
+    <form class="bg-white p-10 rounded-lg shadow hover:shadow-lg duration-300" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="border border-gray-300 border-dashed rounded-lg w-full hover:border-green-200 duration-300">
+
+        
+        <label for="imagen" class="flex flex-col items-center justify-center cursor-pointer  py-20 gap-3">
+            <i class="fa-light fa-cloud-arrow-up text-4xl"></i>
+            <p class="text-gray-400 font-light">Drop files here or click to upload.</p>
+
+        </label>
+    </div>
+        <input class="hidden" type="file" name="imagen" id="imagen" accept="image/*">
+        <div class="flex items-end justify-end">
+            <button class="mt-5 bg_color2 text-white rounded-lg py-3 px-5  duration-300 text-sm" type="submit">Procesar imagenes</button>
+        </div>
+    </form>
+
+    <!-- Mostrar la imagen en escala de grises -->
+    {% if nombre_archivo %}
+    <div class="mt-10 grid grid-cols-4 gap-10">
+        <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">
+            <p class="text-white uppercase letter_spacing text-center text-black text-lg font-light">Imagen Inicial</p>
+            <img class="" src="static/myapp/grises/imagen_inicial.jpg" alt="Imagen en escala de grises">
+        </div>
+
+        <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">
+            <p class="text-white uppercase letter_spacing text-center text-black text-lg font-light">Imagen Recortada</p>
+            <img class="" src="static/myapp/grises/img_recortada.png" alt="Imagen en escala de grises">
+        </div>
+
+        <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">
+            <p class="text-white uppercase letter_spacing text-center text-black text-lg font-light">Imagen en escala de grises</p>
+            <img class="" src="static/myapp/grises/imagen_original_gray.png" alt="Imagen en escala de grises">
+        </div>
+
+        <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">
+            <p class="text-white uppercase letter_spacing text-center text-black text-lg font-light">Imagen con filtro FFT</p>
+            <img class="" src="static/myapp/grises/imagen_filtrada.png" alt="Imagen en escala de grises">
+        </div>
+
+        <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">
+            <p class="text-white uppercase letter_spacing text-center text-lg font-light">Imagen Matriz de Orientación</p>
+            <img class=" h-96" src="static/myapp/grises/matriz_orientacion.png" alt="Imagen en escala de grises">
+        </div>
+        
+</div>
+    {% endif %}
+
+</div>
+</body>
+    {% endblock %}

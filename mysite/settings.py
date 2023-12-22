@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-sy=*&)sez576-#o-an5aiz33oq&eq449(6%f$9ttlxb!_99xnp
 DEBUG = True
 
 ALLOWED_HOSTS = ["filtro-fft.onrender.com"]
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -122,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'myapp')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 

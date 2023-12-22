@@ -22,7 +22,7 @@ from IPython.display import display
 
 def convertir_a_escala_de_grises(imagen, nombre_archivo):
     # Verificar si la carpeta de destino existe, y crearla si no
-    carpeta_destino = os.path.join(settings.STATIC_ROOT, 'grises')
+    carpeta_destino = os.path.join(settings.STATICFILES_DIRS[0])
     if not os.path.exists(carpeta_destino):
         os.makedirs(carpeta_destino)
 
@@ -40,12 +40,13 @@ def convertir_a_escala_de_grises(imagen, nombre_archivo):
 
 def filtrarImagenes():
 
-    ruta_imagen_local = 'static/myapp/grises/imagen_inicial.jpg'
+    carpeta_destino = os.path.join(settings.STATICFILES_DIRS[0])
+    ruta_imagen_local = carpeta_destino+'/imagen_inicial.jpg'
 
     # Lee la imagen localmente
     img = cv2.imread(ruta_imagen_local)
 
-    cv2.imwrite('static/myapp/grises/img_original.png', img)
+    cv2.imwrite(carpeta_destino+'/img_original.png', img)
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # Convierte la imagen a escala de grises
     blurred = cv2.GaussianBlur(gray, (5, 5), 0) # Aplica un desenfoque para mejorar la detección de bordes
@@ -64,7 +65,7 @@ def filtrarImagenes():
     output_path = 'lucuma.jpg'
     cv2.imwrite(output_path, cropped_image)
 
-    cv2.imwrite('static/myapp/grises/img_recortada.png', cropped_image)
+    cv2.imwrite(carpeta_destino+'/img_recortada.png', cropped_image)
 
     # Función de orientación con ajuste de proporciones
     def calcular_orientaciones_promedio(Gx, Gy, ancho_region=18, alto_region=18):
@@ -129,8 +130,8 @@ def filtrarImagenes():
 
 
         # Guardar cada imagen sin bordes ni texto
-        output_path_original_gray = 'static/myapp/grises/imagen_original_gray.png'
-        output_path_filtrada = 'static/myapp/grises/imagen_filtrada.png'
+        output_path_original_gray = carpeta_destino+'/imagen_original_gray.png'
+        output_path_filtrada = carpeta_destino+'/imagen_filtrada.png'
         #output_path_orientacion = 'static/myapp/grises/matriz_orientacion.png'
 
         cv2.imwrite(output_path_original_gray, imagen)  # Guardar imagen original
@@ -147,7 +148,7 @@ def filtrarImagenes():
         plt.subplot(155), plt.imshow(matriz_orientacion, cmap='hsv'), plt.axis('off')
         plt.imshow(matriz_orientacion, cmap='hsv')
 
-        plt.savefig('static/myapp/grises/matriz_orientacion.png', bbox_inches='tight', pad_inches=0)
+        plt.savefig(carpeta_destino+'/matriz_orientacion.png', bbox_inches='tight', pad_inches=0)
       
 
         return imagen_filtrada
@@ -157,7 +158,7 @@ def filtrarImagenes():
     resultado = aplicar_fft_y_recortar(ruta_imagen)
 
 def guardarStaticImg(imagenPost):
-    carpeta_destino = os.path.join(settings.STATIC_ROOT, 'grises')
+    carpeta_destino = os.path.join(settings.STATICFILES_DIRS[0])
     img = Image.open(imagenPost)
     if not os.path.exists(carpeta_destino):
         os.makedirs(carpeta_destino)

@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-sy=*&)sez576-#o-an5aiz33oq&eq449(6%f$9ttlxb!_99xnp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['filtro-fft.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition

@@ -181,8 +181,8 @@ def index(request):
         filtrarImagenes()
        
     else:
-        nombre_archivo = None
-        #nombre_archivo = 'wqe'
+        # nombre_archivo = None
+        nombre_archivo = 'wqe'
 
     return render(request, 'index.html', {
         'title': title,

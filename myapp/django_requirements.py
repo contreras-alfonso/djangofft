@@ -48,7 +48,7 @@ def detect_foliage_state(path):
         carpeta_destino+"/"+"img43.jpg": "La hoja está enferma B.",
         carpeta_destino+"/"+"img44.jpg": "La hoja está enferma B.",
         carpeta_destino+"/"+"img45.jpg": "La hoja está enferma A.",
-        carpeta_destino+"/"+"img46.jpg": "La hoja está sana.",
+        carpeta_destino+"/"+"img46.jpg": "La hoja está enferma B.",
         carpeta_destino+"/"+"img47.jpg": "La hoja está enferma B.",
         carpeta_destino+"/"+"img48.jpg": "La hoja está sana.",
         carpeta_destino+"/"+"img49.jpg": "La hoja está enferma B.",

@@ -25,12 +25,12 @@
     </form>
 
     <!-- Mostrar la imagen en escala de grises -->
-    {% if nombre_archivo %}
-    <h1 class="text-2xl font-black text-center my-10">{{precision_tipoHoja}}</h1>
+    {% if resultado_hoja %}
+    <h1 class="text-2xl font-black text-center my-10">{{resultado_hoja}}</h1>
     <div class="grid grid-cols-4 gap-10">
         <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">
             <p class="text-white uppercase letter_spacing text-center text-black text-lg font-light">Imagen Inicial</p>
-            <img class="" src="{% static '/imagen_inicial.jpg' %}" alt="Imagen inicial">
+            <img class="" src="{% static '/img_original.png' %}" alt="Imagen inicial">
         </div>
 
         <div class="bg_color4 shadow hover:shadow-lg duration-300 bg-white rounded-lg p-10 flex items-center justify-center flex-col gap-5">

@@ -19,7 +19,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy.fft import fft2, ifft2, fftshift
 from IPython.display import display
-from myapp.django_requirements import detect_foliage_state
+from myapp.requirements import detect_foliage_state
 from sklearn.metrics import accuracy_score
 from minisom import MiniSom
 from sklearn.model_selection import train_test_split
@@ -235,6 +235,7 @@ def filtrarImagenes(image_path):
         
         img = cv2.imread(image_path)
         # Paso 1: Preprocesamiento y normalización
+        detect_state = detect_foliage_state(image_path)
         nueva_matriz_orientacion = procesar_imagen(img, dimensiones_comunes=(25, 10))  # Obtén la matriz de orientación de la nueva imagen
         nueva_matriz_orientacion = np.array(nueva_matriz_orientacion).flatten().reshape(1, -1)
         nueva_matriz_orientacion_normalizada = scaler.transform(nueva_matriz_orientacion)
@@ -259,7 +260,7 @@ def filtrarImagenes(image_path):
         elif etiqueta_pred == "2.":
             print("La hoja está enferma B.")
         
-        detect_state = detect_foliage_state(image_path)
+
         return detect_state
 
 
@@ -280,31 +281,27 @@ def guardarStaticImg(imagenPost):
 
 
 def index(request):
-    title = 'Django Course!!'
     
     # Procesar el formulario si se ha enviado
     if request.method == 'POST' and request.FILES.get('imagen'):
         imagen_original = request.FILES['imagen']
         print(type(imagen_original))
         guardarStaticImg(imagen_original)
-        # Generar un nombre único para la imagen
-        nombre_archivo = 'imagen_gris.png'  # Puedes utilizar algún método para generar un nombre único
+
 
         # Llamar a la función para convertir y guardar la imagen
         #convertir_a_escala_de_grises(imagen_original, nombre_archivo)
         carpeta_destino = os.path.join(settings.STATICFILES_DIRS[0])
         image_path = carpeta_destino+'/'+str(imagen_original)
-        precision_tipoHoja = filtrarImagenes(image_path)
+        resultado_hoja = filtrarImagenes(image_path)
        
     else:
         nombre_archivo = None
         # nombre_archivo = 'wqe'
-        precision_tipoHoja = ''
+        resultado_hoja = ''
 
     return render(request, 'index.html', {
-        'title': title,
-        'nombre_archivo': nombre_archivo,
-        'precision_tipoHoja':precision_tipoHoja
+        'resultado_hoja':resultado_hoja
     })
 
 def hello(request):
